@@ -61,6 +61,18 @@ const commands = [
       },
     ],
   },
+  {
+    name: 'generate',
+    description: 'Generate a QR code for the provided text',
+    options: [
+      {
+        type: 3,
+        name: 'text',
+        description: 'Text or URL to generate QR code for',
+        required: true,
+      },
+    ],
+  },
 ];
 
 module.exports = commands

@@ -2,6 +2,8 @@ require('dotenv').config();
 const { Client, GatewayIntentBits, REST, Routes } = require('discord.js');
 const axios = require('axios');
 const commands = require('./commands');
+const QRCode = require('qrcode');
+const { Buffer } = require('buffer');
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
 
 const TOKEN = process.env.CLIENT_TOKEN;
@@ -65,6 +67,19 @@ async function main() {
         await interaction.reply(weatherInfo);
       } catch (error) {
         await interaction.reply('Sorry, I could not fetch the weather data. Please try again later.');
+      }
+    }
+
+    if (interaction.commandName === 'generate') {
+      const text = interaction.options.getString('text');
+      try {
+        const qrCodeDataUrl = await QRCode.toDataURL(text);
+        const base64Data = qrCodeDataUrl.replace(/^data:image\/png;base64,/, '');
+        const buffer = Buffer.from(base64Data, 'base64');
+        await interaction.reply({ files: [{ attachment: buffer, name: 'qrcode.png' }] });
+      } catch (error) {
+        console.log(error)
+        await interaction.reply('Sorry, I could not generate the QR code. Please try again later.');
       }
     }
   });
