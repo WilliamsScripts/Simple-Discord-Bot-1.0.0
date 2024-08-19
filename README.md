@@ -8,6 +8,7 @@ This is a versatile Discord bot that combines multiple functionalities, includin
 - **User Greetings**: The bot welcomes users when they type "hello" in the chat, sending a friendly greeting to the channel.
 - **Employee Check-in System**: Log work activities like signing in, taking lunch breaks, and signing out using the `/check-in` command.
 - **Virtual Sweets**: Request virtual sweets like lollipops and candies using the `/sweets` command.
+- **QR Code Generator**: Generate QR codes from text. Send the QR code image directly in Discord.
 
 ## Prerequisites
 
@@ -58,6 +59,10 @@ Before you begin, ensure you have met the following requirements:
 - `/weather`: Get the current weather for a specific city.
   - **Options**:
     - `city`: The name of the city you want the weather for.
+- `/generate`: Generate a QR code from provided text.
+  - **Options**:
+    - `text`: The text you want to encode into a QR code.
+
 
 ### Automated Responses
 
@@ -68,6 +73,8 @@ Before you begin, ensure you have met the following requirements:
 In any Discord channel where the bot is active, you can type:
   ```bash
     /weather city:London
+
+    /generate text:HelloWorld
   ```
 
 ## Acknowledgements
@@ -75,6 +82,7 @@ In any Discord channel where the bot is active, you can type:
 - [Discord.js](https://discord.js.org/) for the excellent Discord API library.
 - [OpenWeatherMap](https://openweathermap.org/) for providing the weather data.
 - [dotenv](https://github.com/motdotla/dotenv) for managing environment variables.
+- [QRCode](https://www.npmjs.com/package/qrcode) for providing thr QRcode generator.
 
 ## Contributing
 
